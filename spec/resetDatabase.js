@@ -15,6 +15,12 @@ var resetDatabase = function (dbSession, callback) {
                 dbSession.remove('category', '1', function (err) {
                     callback(err);
                 });
+            },
+
+            function(callback){
+                dbSession.remove('sqlite_sequence', '1', function(err){
+                    callback(err);
+                });
             }
         ],
         function (err, results) {
