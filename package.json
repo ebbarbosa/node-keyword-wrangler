@@ -14,6 +14,7 @@
     "sqlite3": "^3.1.8"
   },
   "dependencies": {
+    "bower": "^1.8.0",
     "db-migrate": "^0.9.26",
     "node-dbi": "^0.7.1",
     "percolator": "^1.5.0"
