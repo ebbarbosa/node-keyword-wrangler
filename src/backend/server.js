@@ -15,6 +15,24 @@ var Server = function (port) {
                     res.collection(rows).send();
                 }
             });
+        },
+        POST: function (req, res) {
+            req.onJson(function (err, newKeyword) {
+                if (err) {
+                    console.log(err);
+                    res.status.interalServerError(err);
+                } else {
+                    dbSession.query('insert into keyword (value,categoryID) values (?,?);', [newKeyword.value, newKeyword.categoryID],
+                        function (err) {
+                            if (err) {
+                                console.log(err);
+                                res.status.interalServerError(err);
+                            } else {
+                                res.object({ 'status': 'ok', 'id': dbSession.getLastInsertId() }).send();
+                            }
+                        });
+                }
+            });
         }
     });
 
