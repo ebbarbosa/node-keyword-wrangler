@@ -73,6 +73,18 @@ var Server = function (port) {
                         });
                 }
             });
+        },
+
+        DELETE: function (req, res) {
+            var keywordId = req.uri.child();
+            dbSession.query('delete from keyword where id = ?', [keywordId], function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.status.internalServerError(err);
+                } else {
+                    res.object({ 'status': 'ok' }).send();
+                }
+            });
         }
     });
 
