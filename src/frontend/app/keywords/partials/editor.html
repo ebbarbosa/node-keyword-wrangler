@@ -5,9 +5,9 @@
             ng-init="newKeyword.value = ''" 
             type="text" 
             placeholder="Name of new Keyword">
-        <select ng-model="newKeyword-categoryID" 
-            ng-init="newKeyword-categoryID = 1" 
-            ng-options="kaywordCategory.is as keywordCategory.name for keywordCategory in keywordCategories"></select>
+        <select ng-model="newKeyword.categoryID" 
+            ng-init="newKeyword.categoryID = 1" 
+            ng-options="keywordCategory.id as keywordCategory.name for keywordCategory in keywordsCategories"></select>
         <button ng-class="newKeyword.value.length > 0 && 'btn btn-success' || 'btn'" 
             ng-click="newKeyword.value.length > 0 && createKeyword(newKeyword)">Create</button>
     </form>

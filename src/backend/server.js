@@ -4,13 +4,13 @@ var Percolator = require('percolator').Percolator;
 var dbSession = require('../../src/backend/dbSession.js');
 
 var Server = function (port) {
-    var server = Percolator({ 'port': port, 'autolink': false, 'staticDir': __dirname + '/../frontend' });
+    var server = Percolator({ 'port': port, 'autoLink': false, 'staticDir': __dirname + '/../frontend' });
     server.route('/api/keywords', {
         GET: function (req, res) {
             dbSession.fetchAll('Select id, value, categoryID from keyword order by id', function (err, rows) {
                 if (err) {
                     console.log(err);
-                    res.status.interalServerError(err);
+                    res.status.internalServerError(err);
                 } else {
                     res.collection(rows).send();
                 }
@@ -20,13 +20,13 @@ var Server = function (port) {
             req.onJson(function (err, newKeyword) {
                 if (err) {
                     console.log(err);
-                    res.status.interalServerError(err);
+                    res.status.internalServerError(err);
                 } else {
                     dbSession.query('insert into keyword (value,categoryID) values (?,?);', [newKeyword.value, newKeyword.categoryID],
                         function (err) {
                             if (err) {
                                 console.log(err);
-                                res.status.interalServerError(err);
+                                res.status.internalServerError(err);
                             } else {
                                 res.object({ 'status': 'ok', 'id': dbSession.getLastInsertId() }).send();
                             }
@@ -41,7 +41,7 @@ var Server = function (port) {
             dbSession.fetchAll('SELECT id, name from category order by id', function (err, rows) {
                 if (err) {
                     console.log(err);
-                    res.status.interalServerError(err);
+                    res.status.internalServerError(err);
                 } else {
                     res.collection(rows).send();
                 }

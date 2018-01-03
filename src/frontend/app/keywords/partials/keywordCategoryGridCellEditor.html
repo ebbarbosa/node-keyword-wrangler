@@ -1,6 +1,6 @@
 <select 
     class="form-control"
     ng-model="row.entity.categoryID"
-    ng-options="keywordCategory.id as keywordCategory.name in keywordCategories"
+    ng-options="keywordCategory.id as keywordCategory.name for keywordCategory in keywordsCategories"
     ng-blur="stopEditingKeywordCategory()">
 </select>

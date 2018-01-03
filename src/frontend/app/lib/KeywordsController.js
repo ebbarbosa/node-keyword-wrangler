@@ -4,7 +4,9 @@
     var app = angular.module('app');
 
     app.controller('KeywordsController', function ($scope, RepositoryFactory, resolveEntity) {
+        
         $scope.resolveEntity = resolveEntity;
+        
         var KeywordsCategoryRepository = new RepositoryFactory({
             endpoint: 'keywords/categories',
             retrieveItems: function (data) {
@@ -53,12 +55,13 @@
                 {
                     field: 'keywordCategoryID',
                     displayName: 'Category',
-                    cellTemplate: 'app/keywords/partials/keywordCategoryGridCellEditor.html'
+                    cellTemplate: 'app/keywords/partials/keywordCategoryGridCell.html',
+                    editableCellTemplate: 'app/keywords/partials/keywordCategoryGridCellEditor.html'
                 },
                 {
                     field: '',
                     displayName: 'Operations',
-                    cellTemplate: 'app/keywords/partials/operationsGridCellEditor.html',
+                    cellTemplate: 'app/keywords/partials/operationsGridCell.html',
                     enableCellEdit: false,
                     sortable: false
                 }
